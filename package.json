@@ -8,9 +8,27 @@
     "express-session": "^1.17.2",
     "mongoose": "^6.2.3",
     "morgan": "^1.10.0",
-    "mysql2": "^2.3.3",
     "passport": "^0.5.2",
-    "passport-local": "^1.0.0",
-    "sequelize": "^6.16.1"
-  }
+    "passport-local": "^1.0.0"
+
+  },
+  "name": "blog",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Davy-404/Blog_nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Davy-404/Blog_nodejs/issues"
+  },
+  "homepage": "https://github.com/Davy-404/Blog_nodejs#readme",
+  "description": ""
 }
