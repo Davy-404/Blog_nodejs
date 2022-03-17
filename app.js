@@ -16,7 +16,6 @@ const usuarios = require('./routes/usuario');
 const passport = require('passport');
 require('./config/auth')(passport);
 const db = require('./config/db');
-const { mongoURI } = require('./config/db');
 
 //CONFIGURAÇÕES
 
