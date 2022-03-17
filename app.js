@@ -46,9 +46,8 @@ app.use(bodyParser.json());
 app.engine('handlebars', handlebars.engine({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-console.log('link de conexão', mongoURI)
 mongoose.Promise = global.Promise;
-mongoose.connect(db.mongoURI).then(() => {
+mongoose.connect(process.env.MONGODB_URL).then(() => {
     console.log('conectado ao mongo')
 }).catch((err) => {
     console.log('erro ao se conectar' + err)
