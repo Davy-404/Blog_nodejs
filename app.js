@@ -57,7 +57,7 @@ app.use(express.static(path.join(__dirname, '/public/css')));
 
 //ROTAS
 app.get('/inicio', (req, res) => {
-    Postagem.find().lean().populate().sort({data: 'desc'}).then((postagens) => {
+    Postagem.find().lean().populate().then((postagens) => {
         res.render('index', {postagens: postagens})
     }).catch((err) => {
         req.flash('error_msg', 'Houve um erro interno')
@@ -71,11 +71,11 @@ app.get('/postagem/:slug',(req, res) =>{
             res.render('postagem/index', {postagem: postagem})
         }else{
             req.flash('error_msg', 'Essa postagem não existe')
-            res.redirect('/')
+            res.redirect('/inicio')
         }
     }).catch((err) => {
         req.flash('error_msg', 'Houve um erro interno')
-        res.redirect('/')
+        res.redirect('/inicio')
     })
 });
 
@@ -84,7 +84,7 @@ app.get('/categorias', (req, res) => {
         res.render('categorias/index', {categorias: categorias})
     }).catch((err) => {
         req.flash('error_msg', 'Aconteceu um erro interno')
-        res.redirect('/')
+        res.redirect('/inicio')
     })
 });
 
@@ -96,16 +96,16 @@ app.get('/categorias/:slug', (req, res) => {
 
             }).catch((err) => {
                 req.flash('error_msg', 'erro interno')
-                res.redirect('/')
+                res.redirect('/inicio')
             })
 
         }else{
             req.flash('error_msg', 'Essa categoria não existe')
-            res.redirect('/')
+            res.redirect('/inicio')
         }
     }).catch((err) => {
         req.flash('error_msg', 'Houve um erro interno ao carregar pagina dessa categoria')
-        res.redirect('/')
+        res.redirect('/inicio')
     })
 });
 
