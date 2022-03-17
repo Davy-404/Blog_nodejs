@@ -17,7 +17,7 @@ router.get('/inicio',(req, res) => {
 });
 */
 router.get('/categorias', eAdmin, (req, res) => {
-    Categoria.find().lean().sort({data:'desc'}).then((categorias) => {
+    Categoria.find().lean().then((categorias) => {
         res.render('admin/categorias', {categorias: categorias})
      }).catch((err) => {
          req.flash('error_msg', 'houve um erro ao listar as categorias')
