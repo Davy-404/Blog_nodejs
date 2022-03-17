@@ -45,6 +45,7 @@ app.use(bodyParser.json());
 app.engine('handlebars', handlebars.engine({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
+
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URL || db.mongoURI).then(() => {
     console.log('conectado ao mongo')
