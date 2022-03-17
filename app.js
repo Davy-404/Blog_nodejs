@@ -56,7 +56,7 @@ mongoose.connect(db.mongoURI).then(() => {
 app.use(express.static(path.join(__dirname, '/public/css')));
 
 //ROTAS
-app.get('/', (req, res) => {
+app.get('/inicio', (req, res) => {
     Postagem.find().lean().populate().sort({data: 'desc'}).then((postagens) => {
         res.render('index', {postagens: postagens})
     }).catch((err) => {

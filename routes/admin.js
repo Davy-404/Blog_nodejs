@@ -8,7 +8,7 @@ require('../models/Postagem')
 const Postagem = mongoose.model('postagens')
 const {eAdmin} = require('../helpers/eAdmin')
 
-router.get('/',(req, res) => {
+router.get('/inicio',(req, res) => {
     res.render('admin/index')
 });
 
