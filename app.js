@@ -15,6 +15,7 @@ const Categoria = mongoose.model('categorias');
 const usuarios = require('./routes/usuario');
 const passport = require('passport');
 require('./config/auth')(passport);
+const db = require('./config/db')
 
 //CONFIGURAÇÕES
 
@@ -45,7 +46,7 @@ app.engine('handlebars', handlebars.engine({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/blogapp').then(() => {
+mongoose.connect(db.mongoURI).then(() => {
     console.log('conectado ao mongo')
 }).catch((err) => {
     console.log('erro ao se conectar' + err)
@@ -116,7 +117,7 @@ app.use('/admin', admin);
 app.use('/usuarios', usuarios);
 
 //outros
-const PORT = 8089
+const PORT =process.env.PORT || 8089
 app.listen(PORT,() => {
     console.log(`servidor rodando na porta: ${PORT}`)
 });
