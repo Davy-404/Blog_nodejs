@@ -56,7 +56,7 @@ mongoose.connect(db.mongoURI).then(() => {
 app.use(express.static(path.join(__dirname, '/public/css')));
 
 //ROTAS
-app.get('/inicio', (req, res) => {
+app.get('/', (req, res) => {
     Postagem.find().lean().populate().then((postagens) => {
         res.render('index', {postagens: postagens})
     }).catch((err) => {
@@ -71,11 +71,11 @@ app.get('/postagem/:slug',(req, res) =>{
             res.render('postagem/index', {postagem: postagem})
         }else{
             req.flash('error_msg', 'Essa postagem não existe')
-            res.redirect('/inicio')
+            res.redirect('/')
         }
     }).catch((err) => {
         req.flash('error_msg', 'Houve um erro interno')
-        res.redirect('/inicio')
+        res.redirect('/')
     })
 });
 
@@ -84,7 +84,7 @@ app.get('/categorias', (req, res) => {
         res.render('categorias/index', {categorias: categorias})
     }).catch((err) => {
         req.flash('error_msg', 'Aconteceu um erro interno')
-        res.redirect('/inicio')
+        res.redirect('/')
     })
 });
 
@@ -96,16 +96,16 @@ app.get('/categorias/:slug', (req, res) => {
 
             }).catch((err) => {
                 req.flash('error_msg', 'erro interno')
-                res.redirect('/inicio')
+                res.redirect('/')
             })
 
         }else{
             req.flash('error_msg', 'Essa categoria não existe')
-            res.redirect('/inicio')
+            res.redirect('/')
         }
     }).catch((err) => {
         req.flash('error_msg', 'Houve um erro interno ao carregar pagina dessa categoria')
-        res.redirect('/inicio')
+        res.redirect('/')
     })
 });
 
@@ -117,7 +117,7 @@ app.use('/admin', admin);
 app.use('/usuarios', usuarios);
 
 //outros
-const PORT =process.env.PORT || 8089
+const PORT = process.env.PORT || 8089
 app.listen(PORT,() => {
-    console.log(`servidor rodando na porta: ${PORT}`)
+    console.log("servidor rodando")
 });
