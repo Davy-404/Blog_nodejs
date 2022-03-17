@@ -15,7 +15,8 @@ const Categoria = mongoose.model('categorias');
 const usuarios = require('./routes/usuario');
 const passport = require('passport');
 require('./config/auth')(passport);
-const db = require('./config/db')
+const db = require('./config/db');
+const { mongoURI } = require('./config/db');
 
 //CONFIGURAÇÕES
 
@@ -45,6 +46,7 @@ app.use(bodyParser.json());
 app.engine('handlebars', handlebars.engine({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
+console.log('link de conexão', mongoURI)
 mongoose.Promise = global.Promise;
 mongoose.connect(db.mongoURI).then(() => {
     console.log('conectado ao mongo')
